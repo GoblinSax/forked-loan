@@ -1,0 +1,24 @@
+{
+  "name": "forked-loan",
+  "version": "1.0.0",
+  "description": " Testing loaning mechanism of gs-sdk on forked mainnet ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoblinSax/forked-loan.git"
+  },
+  "author": "Goblin Sax",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoblinSax/forked-loan/issues"
+  },
+  "homepage": "https://github.com/GoblinSax/forked-loan#readme",
+  "dependencies": {
+    "@goblinsax/gs-sdk": "^1.0.7",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "hardhat": "^2.10.1"
+  }
+}
