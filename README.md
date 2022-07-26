@@ -1,15 +1,14 @@
 Build the <a href="https://github.com/GoblinSax/gs-sdk">gs-sdk</a> using:
-> npm run build:cjs
+> npm run build
 
-Go to packages/cjs and:
+Link it usingL
 > npm link
 
-No on forked-loan repo:
+Now on forked-loan repo:
 > npm link @goblinsax/gs-sdk
 
 Start a hardhat node using:
 > npx hardhat node
-
 
 Run the tests using:
 > npx hardhat test --network localhost
