@@ -70,7 +70,9 @@ describe('API Tests', function () {
 
         duration = 7
         let sel = terms['offers'][String(duration)][0]
-        let loan = await gs.beginLoan(NFT, 7090, duration, owner.address, terms['price'] * 10**18 * sel['LTV'], sel['APR'], "0x0000000000000000000000000000000000000000")
+
+        let loan = await gs.beginLoan(NFT, 7090, duration, owner.address, terms['price'] * sel['LTV'], sel['APR'], "0x0000000000000000000000000000000000000000")
+        console.log("Created loan")
 
         if (await gs.checkApprovedWETH() == false){
             await gs.approveSpendingWETH()
