@@ -1,7 +1,7 @@
 Build the <a href="https://github.com/GoblinSax/gs-sdk">gs-sdk</a> using:
 > npm run build
 
-Link it usingL
+Link it using:
 > npm link
 
 Now on forked-loan repo:

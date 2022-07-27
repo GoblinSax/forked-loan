@@ -18,7 +18,7 @@ describe('API Tests', function () {
 
         gs = new GoblinSaxAPI(owner, process.env.GS_MAINNET_API, 'MAINNET')
         
-        //Transfer ETH and BAYC to run the test
+        //Transfer ETH to pay gas and BAYC to run the test
 
         let WHALE = "0x8AD272Ac86c6C88683d9a60eb8ED57E6C304bB0C"
 
@@ -28,18 +28,16 @@ describe('API Tests', function () {
         });
 
         const nft_signer = await ethers.provider.getSigner(WHALE);
-        let AMT = ethers.utils.parseEther("0.1")
+        let AMT = ethers.utils.parseEther("1")
 
-        let eth_balance = await owner.provider.getBalance(WETH);
 
-        if (AMT >= eth_balance ){
-            await nft_signer.sendTransaction({
-                to: owner.address,
-                value: AMT
-            });
+        await nft_signer.sendTransaction({
+            to: owner.address,
+            value: AMT
+        });
 
-            console.log("Transferred ETH")
-        }
+        console.log("Transferred ETH")
+    
 
         NFT_CONTRACT = await ethers.getContractAt(erc721ABI, NFT, nft_signer);
 
@@ -52,7 +50,7 @@ describe('API Tests', function () {
 
     it("Enough gas to take loans", async function() {
         let eth_balance = await owner.provider.getBalance(owner.address);
-        expect(eth_balance / 10**18 ).to.greaterThan(0.01)
+        expect(eth_balance / 10**18 ).to.greaterThan(0.1)
     })
 
     it("Account has BAYC", async function() {
@@ -66,6 +64,7 @@ describe('API Tests', function () {
 
         if (await gs.checkApprovedNFT(NFT) == false){
             await gs.approveSpendingNFT(NFT)
+            console.log(await gs.checkApprovedNFT(NFT))
         }
 
         duration = 7
@@ -83,5 +82,4 @@ describe('API Tests', function () {
 
         await gs.repayLoan(loanIds[0])
     })
-
 })
