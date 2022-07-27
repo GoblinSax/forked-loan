@@ -43,9 +43,9 @@ describe('API Tests', function () {
 
         NFT_CONTRACT = await ethers.getContractAt(erc721ABI, NFT, nft_signer);
 
-        // await NFT_CONTRACT.transferFrom(WHALE, owner.address, 7090, {
-        //     from: WHALE,
-        // })
+        await NFT_CONTRACT.transferFrom(WHALE, owner.address, 7090, {
+            from: WHALE,
+        })
 
         console.log("Transferred BAYC")
     });
