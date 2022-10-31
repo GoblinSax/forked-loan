@@ -75,7 +75,7 @@ describe('API Tests', function () {
     })
 
 
-    it("Create and repay loan", async function() {
+    it("Create loan", async function() {
         let terms = await gs.getTerms(NFT, 7090)
 
         if (await gs.checkApprovedNFT(NFT) == false){
@@ -86,16 +86,9 @@ describe('API Tests', function () {
         duration = 7
         let sel = terms['offers'][String(duration)][0]
 
-        let loan = await gs.beginLoan(NFT, 7090, duration, owner.address, terms['price'] * sel['LTV'], sel['APR'], "0x0000000000000000000000000000000000000000")
+        console.log(sel)
+
+        let loan = await gs.beginLoan(NFT, 7090, duration, owner.address, BigInt(sel['loanPrincipal']), sel['APR'], "0x0000000000000000000000000000000000000000")
         console.log("Created loan")
-
-        if (await gs.checkApprovedWETH() == false){
-            await gs.approveSpendingWETH()
-        }
-
-        let allLoans = await gs.getLoans(process.env.ALCHEMY_API)
-        let loanIds = Object.keys(allLoans)
-
-        await gs.repayLoan(loanIds[0])
     })
 })
